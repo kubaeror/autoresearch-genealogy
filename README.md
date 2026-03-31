@@ -47,8 +47,25 @@ copilot
 > Use /autoresearch to expand my entire family tree
 ```
 
-This will autonomously loop through all ancestors in your vault, search Polish databases, evaluate results, and add confirmed ancestors.
+This runs the orchestrator. For long sessions, use the background pipeline below: prep, manual batch, intake, verify, then resume from runtime state.
 
+### 3a. Background Pipeline (Long Runs)
+
+For long sessions with resumable checkpoints:
+
+```
+> Use /autoresearch-prep to build Search_Queue.md and Runtime_State.md
+# run manual searches and save as manual_search_batch_YYYY-MM-DD.md in vault root
+> Use /autoresearch-intake to ingest batch and update tree/queues
+> Use /autoresearch-verify to process verification queue
+```
+
+Resume at any time by reading `Runtime_State.md` and executing `next_action`.
+
+Runtime files are stored in the vault root:
+- `Search_Queue.md`
+- `Verification_Queue.md`
+- `Runtime_State.md`
 ### 4. Or Use Individual Skills
 
 ```
@@ -78,7 +95,10 @@ See `workflows/getting-started.md` for the full walkthrough.
 **Skills** (`skills/`):
 | Skill | Purpose |
 |-------|---------|
-| autoresearch | Autonomous loop: expand entire family tree |
+| autoresearch | Orchestrator: prep -> manual batch -> intake -> verify |
+| autoresearch-prep | Build Search_Queue.md and Runtime_State.md |
+| autoresearch-intake | Ingest manual search batches and route by confidence |
+| autoresearch-verify | Process Verification_Queue.md with bounded retry loops |
 | geneteka-search | Search Geneteka (65M+ Polish records) |
 | cyrillic-ocr | Extract data from Russian Cyrillic documents |
 | partition-research | Identify partition and apply partition-specific strategies |
@@ -208,3 +228,5 @@ Requirements:
 - Every prompt must include all 7 fields (Goal, Metric, Direction, Verify, Guard, Iterations, Protocol)
 - Vault templates must have valid YAML frontmatter
 - Test that prompts work end-to-end before submitting
+
+

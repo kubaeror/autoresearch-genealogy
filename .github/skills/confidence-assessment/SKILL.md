@@ -144,3 +144,27 @@ Summary of vault modification rules:
 | Speculative | NO | N/A | N/A | Required |
 
 Always preserve existing information when updating. Never overwrite higher-confidence data with lower-confidence data. If a new finding contradicts existing Strong Signal data, flag the discrepancy in Research_Log.md for manual review rather than modifying the person file.
+
+## Queue Integration
+
+Integrate confidence outcomes with runtime files in vault root:
+
+- `Verification_Queue.md`
+- `Runtime_State.md`
+- `Research_Log.md`
+
+Routing contract:
+- Moderate findings MUST be written to `Verification_Queue.md` with `signal: moderate`, `attempts: 0`, `status: open`
+- Speculative findings MUST be written to `Verification_Queue.md` with `signal: speculative`, `attempts: 0`, `status: open`
+- Strong findings do not enter verification queue unless explicitly contradicted later
+
+Runtime counters after each assessment batch:
+- increment `added_strong` for newly confirmed Strong
+- increment `added_moderate` for newly flagged Moderate
+- update `speculative_open` from queue state
+- update `last_checkpoint`
+- set `next_action` to `/autoresearch-verify` when queue has open items
+
+Conflict rule:
+- Never overwrite existing Strong evidence with Moderate or Speculative updates
+- Log contradictions in `Research_Log.md` as discrepancy entries

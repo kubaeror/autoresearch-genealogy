@@ -264,11 +264,33 @@ In `Research_Log.md`, document:
 
 Negative results are valuable: they prevent duplicate searches and narrow the search space.
 
+# Background Runtime Lifecycle
+
+Use the preferred long-run flow:
+1. prep, run `/autoresearch-prep`
+2. manual batch, create `manual_search_batch_YYYY-MM-DD.md`
+3. intake, run `/autoresearch-intake`
+4. verify, run `/autoresearch-verify`
+5. resume from `Runtime_State.md`
+
+Runtime files in vault root:
+- `Search_Queue.md`
+- `Verification_Queue.md`
+- `Runtime_State.md`
+- `Research_Log.md`
+
+Required behavior:
+- Respect `phase` and `next_action` in `Runtime_State.md`
+- Never overwrite Strong findings with lower confidence updates
+- Keep queue and status transitions deterministic
 # Available Skills
 
 Invoke these skills for specialized tasks:
 
-- **/autoresearch**: Autonomous loop that expands entire family tree by systematically searching all ancestors in vault
+- **/autoresearch**: Orchestrator for prep -> manual batch -> intake -> verify pipeline
+- **/autoresearch-prep**: Build queue and runtime checkpoint files for long sessions
+- **/autoresearch-intake**: Ingest manual search batches, update tree and verification queue
+- **/autoresearch-verify**: Process unresolved leads with bounded verification loops
 - **/geneteka-search**: Structured Geneteka database queries with phonetic variants and geographic expansion
 - **/cyrillic-ocr**: Transcription and translation of Russian partition Cyrillic records
 - **/partition-research**: Deep dive into specific partition's administrative structure and record types
@@ -339,3 +361,5 @@ When beginning research on a new family:
 4. Create or update person file with findings
 5. Log all searches (positive and negative) in Research_Log.md
 6. Assign confidence tiers to all new claims
+
+

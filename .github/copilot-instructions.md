@@ -43,7 +43,10 @@ All findings must be assessed using three confidence tiers:
 
 Use these skills for specialized tasks:
 
-- `/autoresearch`: Autonomous loop that expands entire family tree by systematically searching all ancestors
+- `/autoresearch`: Orchestrator for long-run pipeline (prep -> manual batch -> intake -> verify)
+- `/autoresearch-prep`: Build `Search_Queue.md` and `Runtime_State.md` from current tree baseline
+- `/autoresearch-intake`: Ingest `manual_search_batch_YYYY-MM-DD.md`, route confidence, update tree and queues
+- `/autoresearch-verify`: Process `Verification_Queue.md` with bounded verification loops
 - `/geneteka-search`: Search Geneteka (65M+ Polish records)
 - `/cyrillic-ocr`: Extract data from Russian Cyrillic documents
 - `/partition-research`: Identify partition and apply partition-specific strategies
@@ -87,3 +90,4 @@ Use underscores, not spaces: `Jan_Kowalski.md`, not `John Smith.md`
 - Source-first: every claim needs a citation
 - Log negative results ("Searched X, found nothing")
 - Polish terms with English translations: przydomek (hereditary nickname)
+
