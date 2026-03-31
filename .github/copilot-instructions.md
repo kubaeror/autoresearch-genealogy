@@ -32,6 +32,7 @@ All findings must be assessed using three confidence tiers:
 
 Use these skills for specialized tasks:
 
+- `/autoresearch`: Autonomous loop that expands entire family tree by systematically searching all ancestors
 - `/geneteka-search`: Search Geneteka (65M+ Polish records)
 - `/cyrillic-ocr`: Extract data from Russian Cyrillic documents
 - `/partition-research`: Identify partition and apply partition-specific strategies

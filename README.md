@@ -34,7 +34,15 @@ copilot
 > Find all birth records for the Kowalski family in Lublin parish, 1850-1900
 ```
 
-### 3. Or Use Individual Skills
+### 3. Run Autoresearch (Expand Whole Tree)
+
+```
+> Use /autoresearch to expand my entire family tree
+```
+
+This will autonomously loop through all ancestors in your vault, search Polish databases, evaluate results, and add confirmed ancestors.
+
+### 4. Or Use Individual Skills
 
 ```
 > Use /geneteka-search to find Jan Kowalski born around 1850 in mazowieckie
@@ -44,7 +52,7 @@ copilot
 > Use /confidence-assessment to evaluate this finding
 ```
 
-### 4. Traditional Workflow (Claude Code)
+### 5. Traditional Workflow (Claude Code)
 
 You can also use the prompts directly:
 1. Copy `vault-template/` into your Obsidian vault
@@ -63,6 +71,7 @@ See `workflows/getting-started.md` for the full walkthrough.
 **Skills** (`skills/`):
 | Skill | Purpose |
 |-------|---------|
+| autoresearch | Autonomous loop: expand entire family tree |
 | geneteka-search | Search Geneteka (65M+ Polish records) |
 | cyrillic-ocr | Extract data from Russian Cyrillic documents |
 | partition-research | Identify partition and apply partition-specific strategies |

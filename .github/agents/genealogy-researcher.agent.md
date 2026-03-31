@@ -157,6 +157,7 @@ Negative results are valuable: they prevent duplicate searches and narrow the se
 
 Invoke these skills for specialized tasks:
 
+- **/autoresearch**: Autonomous loop that expands entire family tree by systematically searching all ancestors in vault
 - **/geneteka-search**: Structured Geneteka database queries with phonetic variants and geographic expansion
 - **/cyrillic-ocr**: Transcription and translation of Russian partition Cyrillic records
 - **/partition-research**: Deep dive into specific partition's administrative structure and record types
