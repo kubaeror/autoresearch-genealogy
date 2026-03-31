@@ -11,8 +11,19 @@ The user's Obsidian vault containing genealogical data is specified by the envir
 Default: `~/Documents/Genealogia/`
 
 To set a custom path:
+
+**Linux/Mac:**
 ```bash
 export GENEALOGY_VAULT=/path/to/your/vault
+```
+
+**Windows PowerShell:**
+```powershell
+# Current session only:
+$env:GENEALOGY_VAULT = "C:\Path\To\Your\Vault"
+
+# Persistent (survives restarts):
+[Environment]::SetEnvironmentVariable("GENEALOGY_VAULT", "C:\Path\To\Your\Vault", "User")
 ```
 
 Key vault files:

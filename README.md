@@ -21,7 +21,14 @@ git clone https://github.com/kubaeror/autoresearch-genealogy.git
 cd autoresearch-genealogy
 
 # Set your vault path (where your Obsidian genealogy notes are)
+# Linux/Mac:
 export GENEALOGY_VAULT=~/Documents/Genealogia
+
+# Windows PowerShell:
+$env:GENEALOGY_VAULT = "$HOME\Documents\Genealogia"
+
+# Windows PowerShell (persistent - add to profile):
+[Environment]::SetEnvironmentVariable("GENEALOGY_VAULT", "$HOME\Documents\Genealogia", "User")
 
 # Start Copilot CLI
 copilot
