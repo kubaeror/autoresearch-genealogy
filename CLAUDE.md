@@ -10,8 +10,18 @@ This repository is specifically designed for Polish genealogy research, covering
 - Three partition-era record systems (Russian, Prussian, Austrian)
 - Polish Jewish communities
 
+## Copilot CLI Integration
+
+This repository is optimized for GitHub Copilot CLI with:
+- **Agent**: `/agent genealogy-researcher` - Full Polish genealogy expert
+- **Skills**: `/geneteka-search`, `/cyrillic-ocr`, `/partition-research`, `/kresy-search`, `/confidence-assessment`
+- **Vault path**: Set via `GENEALOGY_VAULT` env var (default: `~/Documents/Genealogia/`)
+
 ## Project Structure
 
+- `.github/agents/` — Custom agent for Copilot CLI
+- `.github/skills/` — Specialized skills for Copilot CLI
+- `.github/copilot-instructions.md` — Repository-wide instructions
 - `prompts/` — Autoresearch prompts for Claude Code. Polish-specific prompts for Geneteka, partition records, Cyrillic extraction, Kresy research, deportation tracking.
 - `vault-template/` — Obsidian vault starter kit with Polish-specific fields (partition, przydomek, herb).
 - `archives/` — Guides to Polish archives: Geneteka, Szukaj w Archiwach, partition-specific resources, Kresy archives.

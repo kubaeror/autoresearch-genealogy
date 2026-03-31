@@ -1,6 +1,6 @@
 # autoresearch-genealogy-poland
 
-Structured prompts, vault templates, and research workflows for AI-assisted Polish genealogy research. Built for Claude Code, adaptable to any AI tool or manual workflow.
+Structured prompts, vault templates, and research workflows for AI-assisted Polish genealogy research. **Built for GitHub Copilot CLI**, also compatible with Claude Code and other AI tools.
 
 This project provides tools and methodologies specifically designed for researching Polish family history, handling the unique challenges of partition-era records, multiple languages (Polish, Latin, Russian, German), and the complex archival landscape of Poland.
 
@@ -11,18 +11,65 @@ This project provides tools and methodologies specifically designed for research
 - **AI/tech enthusiasts** who want a concrete example of autonomous research loops applied to Polish archives
 - **Anyone with ancestors from Poland or Kresy** (Eastern Borderlands) who has documents in multiple scripts and languages
 
-## Quick Start
+## Quick Start with Copilot CLI
 
-1. Clone this repo
-2. Copy the `vault-template/` folder into your Obsidian vault (or any markdown editor)
-3. Fill in `Family_Tree.md` with what you already know (start with yourself, work backward)
-4. Scan any physical documents you have (metryki, akty, photographs, letters)
-5. Open Claude Code, paste the contents of `prompts/01-geneteka-search.md`, and run it
-6. Review the results, then run `prompts/08-cross-reference-audit.md` to verify
+### 1. Install and Configure
+
+```bash
+# Clone the repo
+git clone https://github.com/kubaeror/autoresearch-genealogy.git
+cd autoresearch-genealogy
+
+# Set your vault path (where your Obsidian genealogy notes are)
+export GENEALOGY_VAULT=~/Documents/Genealogia
+
+# Start Copilot CLI
+copilot
+```
+
+### 2. Use the Genealogy Agent
+
+```
+> /agent genealogy-researcher
+> Find all birth records for the Kowalski family in Lublin parish, 1850-1900
+```
+
+### 3. Or Use Individual Skills
+
+```
+> Use /geneteka-search to find Jan Kowalski born around 1850 in mazowieckie
+> Use /cyrillic-ocr to extract data from this Russian partition birth record
+> Use /partition-research to identify which partition my ancestor lived in
+> Use /kresy-search to find records from Lwów area
+> Use /confidence-assessment to evaluate this finding
+```
+
+### 4. Traditional Workflow (Claude Code)
+
+You can also use the prompts directly:
+1. Copy `vault-template/` into your Obsidian vault
+2. Fill in `Family_Tree.md` with what you know
+3. Run prompts from `prompts/` folder
 
 See `workflows/getting-started.md` for the full walkthrough.
 
 ## What's Included
+
+### Copilot CLI Integration (`.github/`)
+
+**Agent** (`agents/`):
+- `genealogy-researcher.agent.md`: Full-featured Polish genealogy expert agent
+
+**Skills** (`skills/`):
+| Skill | Purpose |
+|-------|---------|
+| geneteka-search | Search Geneteka (65M+ Polish records) |
+| cyrillic-ocr | Extract data from Russian Cyrillic documents |
+| partition-research | Identify partition and apply partition-specific strategies |
+| kresy-search | Research Eastern Borderlands archives |
+| confidence-assessment | Assess findings with feedback loops |
+
+**Instructions** (`copilot-instructions.md`): Repository-wide custom instructions
 
 ### Prompts (`prompts/`)
 
