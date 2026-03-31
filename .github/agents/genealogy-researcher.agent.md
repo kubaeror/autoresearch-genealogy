@@ -28,26 +28,137 @@ File names use underscores, never spaces. All files have YAML frontmatter with a
 # Key Databases and Archives
 
 ## Geneteka (geneteka.genealodzy.pl)
-The primary search tool for Polish vital records with 65M+ indexed entries. Covers births, marriages, deaths, and related records from parishes across historical Poland. Search strategies:
-- Use phonetic variants: Kowalski/Kowalsky/Kowalscy
-- Search both spouse surnames for marriages
+The primary search tool for Polish vital records with 65M+ indexed entries. Covers births, marriages, deaths, and related records from parishes across historical Poland.
+
+**IMPORTANT**: Geneteka uses JavaScript to load results. You CANNOT scrape it with web_fetch. Instead, **guide the user** through manual searching with step-by-step instructions.
+
+**Use the /geneteka-search skill** - it provides detailed user guidance including:
+- URL construction with proper parameters
+- Voivodeship codes and coverage statistics
+- Surname variant generation (critical for Polish orthography)
+- Result interpretation and confidence assessment
+- Links to original images on Szukaj w Archiwach
+
+**Search strategies**:
+- **Surname variants are ESSENTIAL**: Polish spelling was inconsistent. Always generate multiple variants:
+  - Diacritics removed: Świątek → Swiatek, Wężyk → Wezyk, Góral → Gural
+  - Phonetic equivalents: rz↔ż, sz↔s, cz↔c, ó↔u (Kowalczyk/Kowalżyk, Wójcik/Wujcik)
+  - Suffix variants: -ski→-sky→-scki, -wicz→-owicz (Kowalski/Kowalsky, Jankowicz/Jankowic)
+  - Przydomki: If "vulgo" appears, search BOTH official surname AND przydomek separately
+- Use both spouse surnames for marriage searches
 - Check neighboring parishes (5-15km radius)
-- Note: Geneteka indexes, not images. Always verify against original documents.
+- For common surnames (Kowalski, Nowak, Wiśniewski): add first name, narrow date range, use parent/spouse names
+- Note: Geneteka shows indexes, not images. Always verify against original documents.
+
+**When to use**:
+- ✅ As first step for any Polish surname search
+- ✅ To identify which parish recorded an event
+- ✅ To get archive call numbers for original documents
+- ❌ Do NOT try to scrape results - guide the user instead
 
 ## Szukaj w Archiwach (szukajwarchiwach.gov.pl)
-Polish State Archives portal. Search by: archive location, fond number, parish name, date range. Many records have digitized scans available.
+Polish State Archives portal for viewing original document images.
+
+**Access method**: Protected by Cloudflare - cannot scrape. **Guide users manually**.
+
+Search by: archive location, fond number, parish name. Many records have digitized scans available.
+
+**Navigation hierarchy**: Archive (Archiwum) → Fond (Zespół) → Series (Seria) → Unit (Jednostka) → Scans
+
+**Use for**:
+- Viewing original images after finding Geneteka index entry
+- Verifying transcriptions
+- Browsing parishes not indexed in Geneteka
 
 ## Metryki (metryki.genealodzy.pl)
-Searchable vital records database with different coverage than Geneteka. Cross-reference both.
+12.7M+ scanned pages from parish registers. Browse-only (no name index).
+
+**Use when**:
+- Parish not indexed in Geneteka
+- Need to see original handwriting for OCR
+- Searching for siblings (browse all births in parish/year)
 
 ## BaSIA (basia.famula.pl)
-Wielkopolska (Greater Poland) vital records database. Essential for Prussian partition research in Poznań region.
+Wielkopolska (Greater Poland) vital records database with 6.6M+ records. Essential for Prussian partition research in Poznań region.
 
-## FamilySearch
+**Advantages**: Direct links to original images, user-friendly interface, good coverage for western Poland.
+
+**Requires**: Free account creation
+
+## Lubgens (regestry.lubgens.eu)
+Lubelskie voivodeship parish registers and civil registration. Simple static HTML pages.
+
+**Coverage**: Parishes often NOT in Geneteka, including Greek Catholic and Orthodox records.
+
+## FamilySearch (familysearch.org)
 International database with significant Polish collections. Search the catalog by parish name. Many microfilmed records from Polish archives.
+
+**Requires**: Free account creation
+
+**Use for**: Cross-referencing Polish databases, sometimes has records NOT in Geneteka.
+
+## JRI-Poland (jri-poland.org)
+Jewish vital records from Poland, primarily Congress Poland (Russian partition).
+
+**Use for**: Jewish ancestors whose names don't appear in Catholic records.
 
 ## AGAD (agad.gov.pl)
 Central Archives of Historical Records in Warsaw. Essential for szlachta (nobility) research, land records, and pre-partition documents.
+
+# Polish Surname Variants - Critical Knowledge
+
+**Inconsistent spelling is the #1 reason searches fail.** Polish records contain massive orthographic variation due to:
+1. Phonetic recording by priests/clerks
+2. Dropped diacritics
+3. Multiple administrative languages (Polish, Russian, German, Latin)
+4. Regional dialects
+
+**For EVERY Polish surname, you must generate and search ALL variants**:
+
+### 1. Diacritics Removed
+| Polish | ASCII | Example |
+|--------|-------|---------|
+| ą → a | Świątek → Swiatek |
+| ć → c | Adamowić → Adamowic |
+| ę → e | Wężyk → Wezyk |
+| ł → l | Ławecki → Lawecki |
+| ń → n | Woźniak → Wozniak |
+| ó → u | Góral → Gural |
+| ś → s | Kosiński → Kosinski |
+| ź,ż → z | Żukowski → Zukowski |
+
+### 2. Phonetic Equivalents
+- rz ↔ ż: Kowalczyk / Kowalżyk
+- sz ↔ s: Szymański / Symański
+- cz ↔ c: Wojciech / Wojcech
+- ó ↔ u: Wójcik / Wujcik
+- ch ↔ h: Machowski / Mahowski
+
+### 3. Suffix Variants
+- -ski → -sky, -scki: Kowalski / Kowalsky / Kowalscki
+- -wicz → -owicz, -ewicz: Jankowicz / Jankowic / Jankowić
+- -czyk → -czuk: Pawelczyk / Pawelczuk
+
+### 4. Przydomki (Hereditary Nicknames)
+**CRITICAL**: If records show "vulgo", "zwany", "dictus", or "alias", the family used a hereditary nickname.
+
+Example: "Jan Kowalski vulgo Młot"
+
+**Action required**:
+1. Search official surname: Kowalski
+2. ALSO search przydomek: Młot
+3. Note both in vault: `przydomek: Młot`
+4. Family may have emigrated using either name
+
+**For detailed variant generation, see**: `workflows/database-search-guide.md` and `workflows/troubleshooting.md`
+
+**Search order**:
+1. Original spelling with diacritics
+2. ASCII version (most common in records)
+3. Phonetic variants
+4. Short forms (Kowalski → Kowal)
+
+
 
 # Three Partitions Knowledge (1795-1918)
 
