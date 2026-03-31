@@ -1,48 +1,96 @@
 ---
 type: region
+name: "[Region Name]"
+type_region: voivodeship | powiat | historical-region | partition
+partition: russian | prussian | austrian | none
+modern_voivodeship: "[Current voivodeship, if different from name]"
 created: YYYY-MM-DD
-tags: [genealogy, regions, country-name, region-name]
+tags: [genealogy, regions, voivodeship-name]
 confidence: high | moderate | speculative
 ---
 
 # [Region Name]
 
-[Brief overview: why this region is relevant to your family history research.]
+## Overview
+
+[Brief description: historical significance, modern status, why relevant to your research.]
+
+## Administrative History
+
+| Era | Name | Type | Part of |
+|---|---|---|---|
+| Pre-1795 | [name] | [type] | [Poland/Poland-Lithuania] |
+| 1795-1918 | [name] | [gubernia/Regierungsbezirk/cyrkuł] | [Partition] |
+| 1918-1939 | [name] | [województwo] | Poland |
+| 1939-1945 | [name] | [type] | [Germany/USSR] |
+| 1945-1975 | [name] | [województwo] | Poland |
+| 1975-1998 | [name] | [województwo] | Poland |
+| 1999-present | [name] | [województwo/powiat] | Poland |
+
+## Partition Context
+
+**Partition**: [Russian / Prussian / Austrian]
+
+**Languages in records**:
+- Civil registration: [language]
+- Church records: [language]
+
+**Key archives**:
+- [Archive name and location]
+- [Archive name and location]
 
 ## Geographic Anchors
 
-### [Specific Location 1]
+### [City/Town 1]
 
 - **Family**: [SURNAME]
-- **Person**: [ANCESTOR] (b. [DATE], [PLACE])
-- **Genetic match**: [Any DNA provider regional matches]
-- **Context**: [Historical/geographic context for this location]
+- **Person**: [[Ancestor_Name]] (b. [DATE])
+- **Parish**: [[Parish_Name]]
+- **Records searched**: [list]
 
-### [Specific Location 2]
+### [City/Town 2]
 
 - **Family**: [SURNAME]
-- **Person**: [ANCESTOR]
-- **Source**: [How this location was identified]
+- **Person**: [[Ancestor_Name]]
+- **Source**: [how identified]
 
-## Migration Pattern
+## Key Parishes
 
-[Describe the migration from this region: when, why, to where. Include historical context (e.g., waves of immigration, push/pull factors).]
+| Parish | Denomination | Geneteka Coverage | Notes |
+|---|---|---|---|
+| [[Parish_1]] | Roman Catholic | [years] | |
+| [[Parish_2]] | Evangelical | [years] | |
 
-**Timeline:**
-- [YEAR]: [Event] ([ANCESTOR])
-- [YEAR]: [Event]
+## Migration Patterns
+
+[Describe migration to/from this region: seasonal work, emigration waves, deportations, repatriations]
+
+**Known migration routes:**
+- [Year]: [from where to where] ([ancestor involved])
 
 ## Genetic Signal
 
-[What does DNA testing say about this region? Which provider, what percentage, what confidence level?]
+[DNA results pointing to this region, if any. Which provider, confidence level.]
 
 ## Connected Persons
 
 | Person | Connection | Dates | Vault Note |
 |---|---|---|---|
-| [[Person_Name]] | [relationship] | YYYY to YYYY | [[Person/Person_Name]] |
+| [[Person_Name]] | [relationship/residence] | YYYY to YYYY | |
+
+## Research Resources
+
+| Resource | Coverage | URL/Location |
+|---|---|---|
+| Geneteka | [years] | geneteka.genealodzy.pl |
+| Szukaj w Archiwach | [years] | szukajwarchiwach.gov.pl |
+| [Regional database] | [years] | [URL] |
 
 ## Open Questions
 
-- [Unresolved question about this region]
-- [Another unresolved question]
+- [Unresolved research questions about this region]
+- [Another question]
+
+## Notes
+
+[Additional context: historical events affecting records, local naming customs, etc.]

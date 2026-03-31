@@ -1,6 +1,6 @@
 # Prompts
 
-Autoresearch prompts for AI-assisted genealogy research. Designed for Claude Code's `/autoresearch` command but adaptable to any AI tool that supports autonomous iteration.
+Autoresearch prompts for AI-assisted Polish genealogy research. Designed for Claude Code's `/autoresearch` command but adaptable to any AI tool that supports autonomous iteration.
 
 ## How to Use
 
@@ -23,36 +23,50 @@ Every prompt contains these fields:
 | **Iterations** | How many autonomous loops to run |
 | **Protocol** | Step-by-step instructions for each iteration |
 
-## Which Prompt to Use When
+## Polish Genealogy Prompts
 
-**Starting from scratch?**
-Start with `01-tree-expansion`. It will search the web for every ancestor you've listed and try to extend every branch.
+### Core Research Sequence
 
-**Already have a populated tree?**
-Run `02-cross-reference-audit` to find and fix discrepancies between your tree file and your source documents.
+| Prompt | Purpose | Use When |
+|---|---|---|
+| 01-geneteka-search | Search Geneteka indexes for vital records | Starting research, finding new ancestors |
+| 02-partition-records | Identify partition and apply partition-specific strategies | Researching 1795-1918 ancestors |
+| 03-cyrillic-extraction | Extract data from Russian partition documents | You have Cyrillic (Russian) language scans |
+| 04-kresy-search | Research Eastern Borderlands ancestors | Family came from modern Ukraine/Belarus/Lithuania |
+| 05-deportation-tracking | Track WWII deportations and displacement | Ancestors were deported, displaced, or imprisoned |
+| 06-cmentarze-sweep | Find burial records in Polish cemeteries | Looking for cemetery/burial information |
+| 07-tree-expansion | Expand tree using Polish sources | After initial Geneteka search, to find more ancestors |
+| 08-cross-reference-audit | Find and fix discrepancies | After gathering records, to verify accuracy |
 
-**Have deceased ancestors without memorial links?**
-Run `03-findagrave-sweep` to locate Find a Grave memorials and extract data from them.
+### Universal Prompts
 
-**Want to export your tree?**
-Run `04-gedcom-completeness` to build or verify a GEDCOM file that matches your vault.
-
-## Prerequisites
-
-| Prompt | Requires |
+| Prompt | Purpose |
 |---|---|
-| 01-tree-expansion | A `Family_Tree.md` file with at least your known ancestors listed |
-| 02-cross-reference-audit | A populated `Family_Tree.md` plus person files or transcription notes |
-| 03-findagrave-sweep | A `Family_Tree.md` with death dates or "deceased" notations |
-| 04-gedcom-completeness | A `Family_Tree.md` and optionally an existing `.ged` file |
+| 09-gedcom-completeness | Verify GEDCOM matches vault data |
+| 10-source-citation-audit | Ensure all claims are sourced |
+| 11-unresolved-persons | Identify unnamed people in documents |
+| 12-timeline-gap-analysis | Find gaps where records should exist |
+| 13-open-question-resolution | Attack research questions systematically |
+| 14-immigration-search | Find emigration/immigration records |
+| 15-dna-chromosome-analysis | Analyze DNA ancestry data |
+
+## Recommended Workflow
+
+1. **Start with Geneteka**: Run `01-geneteka-search` to find indexed records
+2. **Identify partitions**: Run `02-partition-records` for 1795-1918 ancestors  
+3. **Handle languages**: Run `03-cyrillic-extraction` for Russian partition documents
+4. **Check Kresy**: Run `04-kresy-search` if family came from Eastern Borderlands
+5. **Find burials**: Run `06-cmentarze-sweep` for cemetery records
+6. **Expand tree**: Run `07-tree-expansion` to push branches further
+7. **Verify data**: Run `08-cross-reference-audit` to fix discrepancies
 
 ## Placeholders
 
-All prompts use these placeholders. Replace them with your actual data before running:
+All prompts use these placeholders. Replace them with your actual data:
 
-- `[SURNAME]` — A family surname (e.g., "Johnson")
-- `[ANCESTOR]` — A specific ancestor's name (e.g., "Gustav M. Johnson")
-- `[LOCATION]` — A geographic location (e.g., "Clinton, Minnesota")
+- `[SURNAME]` — A family surname (e.g., "Kowalski")
+- `[ANCESTOR]` — A specific ancestor's name (e.g., "Jan Kowalski")
+- `[PARISH]` — A parish name (e.g., "Łódź, św. Krzyża")
+- `[VOIVODESHIP]` — A voivodeship (e.g., "łódzkie", "mazowieckie")
 - `[DATE]` — A date or date range (e.g., "1866" or "1880-1920")
 - `[VAULT_PATH]` — The path to your vault (e.g., `~/Vaults/MyVault/Genealogy/`)
-- `[GEDCOM_PATH]` — The path to your GEDCOM file
